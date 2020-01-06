@@ -1,4 +1,4 @@
-package com.devglan.config;
+package com.portal.config;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
-package com.devglan.dto.out;
+package com.portal.dto.out;
 
-import com.devglan.model.User;
+import com.portal.model.User;
 
 import lombok.Data;
 

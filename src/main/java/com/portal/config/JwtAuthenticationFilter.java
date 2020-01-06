@@ -1,7 +1,7 @@
-package com.devglan.config;
+package com.portal.config;
 
-import static com.devglan.model.Constants.HEADER_STRING;
-import static com.devglan.model.Constants.TOKEN_PREFIX;
+import static com.portal.model.Constants.HEADER_STRING;
+import static com.portal.model.Constants.TOKEN_PREFIX;
 
 import java.io.IOException;
 import java.util.Arrays;

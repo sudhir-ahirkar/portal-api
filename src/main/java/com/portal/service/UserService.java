@@ -1,14 +1,14 @@
-package com.devglan.service;
+package com.portal.service;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.devglan.dto.in.UserSearchInDTO;
-import com.devglan.dto.out.UserSearchOutDTO;
-import com.devglan.model.User;
-import com.devglan.model.UserDto;
+import com.portal.dto.in.UserSearchInDTO;
+import com.portal.dto.out.UserSearchOutDTO;
+import com.portal.model.User;
+import com.portal.model.UserDto;
 
 public interface UserService {
 

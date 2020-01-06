@@ -1,4 +1,4 @@
-package com.devglan.controller;
+package com.portal.controller;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devglan.dto.in.UserSearchInDTO;
-import com.devglan.dto.out.UserSearchOutDTO;
-import com.devglan.model.User;
-import com.devglan.model.UserDto;
-import com.devglan.service.UserService;
+import com.portal.dto.in.UserSearchInDTO;
+import com.portal.dto.out.UserSearchOutDTO;
+import com.portal.model.User;
+import com.portal.model.UserDto;
+import com.portal.service.UserService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

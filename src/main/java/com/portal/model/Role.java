@@ -1,4 +1,4 @@
-package com.devglan.model;
+package com.portal.model;
 
 import javax.persistence.*;
 

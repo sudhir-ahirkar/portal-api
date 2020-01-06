@@ -1,10 +1,13 @@
-package com.devglan.controller;
+package com.portal.controller;
 
-import com.devglan.config.TokenProvider;
-import com.devglan.model.AuthToken;
-import com.devglan.model.LoginUser;
-import com.devglan.model.User;
-import com.devglan.service.UserService;
+import com.portal.config.TokenProvider;
+import com.portal.model.AuthToken;
+import com.portal.model.LoginUser;
+import com.portal.model.User;
+import com.portal.service.UserService;
+
+import static com.portal.model.Constants.TOKEN_PREFIX;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,8 +16,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import static com.devglan.model.Constants.TOKEN_PREFIX;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

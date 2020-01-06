@@ -1,4 +1,4 @@
-package com.devglan.service.impl;
+package com.portal.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,12 +21,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.devglan.dao.UserDao;
-import com.devglan.dto.in.UserSearchInDTO;
-import com.devglan.dto.out.UserSearchOutDTO;
-import com.devglan.model.User;
-import com.devglan.model.UserDto;
-import com.devglan.service.UserService;
+import com.portal.dao.UserDao;
+import com.portal.dto.in.UserSearchInDTO;
+import com.portal.dto.out.UserSearchOutDTO;
+import com.portal.model.User;
+import com.portal.model.UserDto;
+import com.portal.service.UserService;
 
 
 @Service(value = "userService")

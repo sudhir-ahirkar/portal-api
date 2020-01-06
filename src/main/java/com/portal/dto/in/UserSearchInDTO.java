@@ -1,4 +1,4 @@
-package com.devglan.dto.in;
+package com.portal.dto.in;
 
 import lombok.Data;
 
