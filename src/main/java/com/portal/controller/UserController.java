@@ -53,10 +53,21 @@ public class UserController {
         return userService.findById(id);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
+    public void remove(@PathVariable(value = "id") Long userId){
+         userService.remove(userId);
+    }
+    
 
     @RequestMapping(value="/signup", method = RequestMethod.POST)
     public User saveUser(@RequestBody UserDto user){
         return userService.save(user);
+    }
+    
+    @RequestMapping(method = RequestMethod.PUT)
+    public User updateUser(@RequestBody UserDto user){
+        return userService.update(user);
     }
 
 
