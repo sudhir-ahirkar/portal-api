@@ -99,16 +99,16 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	    Example<User> userExample = Example.of(user, matcher);
 	    Page<User> list = userDao.findAll(userExample, pageable);
 	    
-	    if(list.getContent().isEmpty()) {
-	    	List<User> listUse = new ArrayList<>();
-			userDao.findAll().iterator().forEachRemaining(listUse::add);
-			
-			List<UserSearchOutDTO> dtoList = listUse.stream().map(UserSearchOutDTO::toDTO)
-		            .collect(Collectors.toList());
-			  
-		    
-		    return new PageImpl<UserSearchOutDTO>(dtoList, list.getPageable(), listUse.size());
-	    }
+//	    if(list.getContent().isEmpty()) {
+//	    	List<User> listUse = new ArrayList<>();
+//			userDao.findAll().iterator().forEachRemaining(listUse::add);
+//			
+//			List<UserSearchOutDTO> dtoList = listUse.stream().map(UserSearchOutDTO::toDTO)
+//		            .collect(Collectors.toList());
+//			  
+//		    
+//		    return new PageImpl<UserSearchOutDTO>(dtoList, list.getPageable(), listUse.size());
+//	    }
 	    
 	    List<UserSearchOutDTO> dtoList = list.getContent().stream().map(UserSearchOutDTO::toDTO)
 	            .collect(Collectors.toList());

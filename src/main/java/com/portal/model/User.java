@@ -23,16 +23,16 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column
     private String username;
     @Column
     @JsonIgnore
     private String password;
     @Column
-    private long salary;
+    private Long salary;
     @Column
-    private int age;
+    private Long age;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLES", joinColumns = {

@@ -9,7 +9,7 @@ public class UserSearchOutDTO {
 
 	private String username;
 	private String password;
-	private int age;
+	private Long age;
 	private Long salary;
 	private Long id;
 	
