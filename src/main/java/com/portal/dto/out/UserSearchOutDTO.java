@@ -11,6 +11,7 @@ public class UserSearchOutDTO {
 	private String password;
 	private int age;
 	private Long salary;
+	private Long id;
 	
 	public static UserSearchOutDTO toDTO(User user) {
 		
@@ -18,8 +19,7 @@ public class UserSearchOutDTO {
 		userSearchOutDTO.setUsername(user.getUsername());
 		userSearchOutDTO.setAge(user.getAge());
 		userSearchOutDTO.setSalary(user.getSalary());
-		
-		
+		userSearchOutDTO.setId(user.getId());
 		return userSearchOutDTO;
 		
 		
