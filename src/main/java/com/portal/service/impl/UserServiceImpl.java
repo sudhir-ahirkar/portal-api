@@ -3,6 +3,7 @@ package com.portal.service.impl;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -116,5 +117,23 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	    
 	    return new PageImpl<UserSearchOutDTO>(dtoList, list.getPageable(), list.getTotalElements());
 
+	}
+
+	@Override
+	public void remove(Long userId) {
+		userDao.deleteById(userId);		
+	}
+
+	@Override
+	public User update(UserDto user) {
+		Optional<User> oldEntity = userDao.findById(user.getId());
+		if(oldEntity.isPresent()){
+			throw new UsernameNotFoundException("User not found exception");
+		}
+		
+		User updateUser=new User();
+		
+		
+		return null;
 	}
 }
