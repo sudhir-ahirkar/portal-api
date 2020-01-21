@@ -23,10 +23,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.portal.dao.UserDao;
+import com.portal.dto.in.RefDataDTO;
+import com.portal.dto.in.UserRefDataDTO;
 import com.portal.dto.in.UserSearchInDTO;
 import com.portal.dto.out.UserSearchOutDTO;
 import com.portal.model.User;
 import com.portal.model.UserDto;
+import com.portal.ref.service.RefDataService;
 import com.portal.service.UserService;
 
 
@@ -38,6 +41,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 	@Autowired
 	private BCryptPasswordEncoder bcryptEncoder;
+	
+	@Autowired
+	private RefDataService refDataService;
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userDao.findByUsername(username);
@@ -98,18 +104,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	    }
 	    Example<User> userExample = Example.of(user, matcher);
 	    Page<User> list = userDao.findAll(userExample, pageable);
-	    
-//	    if(list.getContent().isEmpty()) {
-//	    	List<User> listUse = new ArrayList<>();
-//			userDao.findAll().iterator().forEachRemaining(listUse::add);
-//			
-//			List<UserSearchOutDTO> dtoList = listUse.stream().map(UserSearchOutDTO::toDTO)
-//		            .collect(Collectors.toList());
-//			  
-//		    
-//		    return new PageImpl<UserSearchOutDTO>(dtoList, list.getPageable(), listUse.size());
-//	    }
-	    
 	    List<UserSearchOutDTO> dtoList = list.getContent().stream().map(UserSearchOutDTO::toDTO)
 	            .collect(Collectors.toList());
 	    
@@ -125,15 +119,23 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	}
 
 	@Override
-	public User update(UserDto user) {
-		Optional<User> oldEntity = userDao.findById(user.getId());
+	public UserDto update(Long userId,UserDto user) {
+		Optional<User> oldEntity = userDao.findById(userId);
 		if(oldEntity.isPresent()){
 			throw new UsernameNotFoundException("User not found exception");
 		}
-		
-		User updateUser=new User();
-		
-		
-		return null;
+		User userUpdate=oldEntity.get();
+		userUpdate.setAge(user.getAge());
+		userUpdate.setSalary(user.getSalary());
+		userDao.save(userUpdate);       
+		return user;
 	}
+
+  @Override
+  public UserRefDataDTO getRefData() {
+    UserRefDataDTO userRefDataDTO=new UserRefDataDTO();
+    List<RefDataDTO> countries= refDataService.getCountry().stream().map(RefDataDTO::toRefData).collect(Collectors.toList());
+    userRefDataDTO.setCountries(countries);
+    return userRefDataDTO;
+  }
 }

@@ -65,9 +65,9 @@ public class UserController {
         return userService.save(user);
     }
     
-    @RequestMapping(method = RequestMethod.PUT)
-    public User updateUser(@RequestBody UserDto user){
-        return userService.update(user);
+    @RequestMapping(value="/users/{id}",method = RequestMethod.PUT)
+    public UserDto updateUser(@PathVariable(value ="id") Long userId,@RequestBody UserDto user){
+        return userService.update(userId,user);
     }
 
 

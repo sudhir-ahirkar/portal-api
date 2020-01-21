@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.portal.dto.in.UserRefDataDTO;
 import com.portal.dto.in.UserSearchInDTO;
 import com.portal.dto.out.UserSearchOutDTO;
 import com.portal.model.User;
@@ -22,5 +23,7 @@ public interface UserService {
     User findById(Long id);
 	void remove(Long id);
 	
-	User update(UserDto user);
+	UserDto update(Long userId,UserDto user);
+	
+    UserRefDataDTO getRefData();
 }
