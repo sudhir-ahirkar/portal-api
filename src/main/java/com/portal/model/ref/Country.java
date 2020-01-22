@@ -17,8 +17,8 @@ public class Country {
   @GeneratedValue(strategy= GenerationType.IDENTITY)
   private Long id;
   
-//  @Column
-//  private String description;
+  @Column
+  private String description;
   
   @Column(name="name")
   private String value;
@@ -29,8 +29,8 @@ public class Country {
   @Column(name="is_active")
   private Boolean isActive;
   
-//  @Column(name="is_deleted")
-//  private Long isDeleted;
+  @Column(name="is_deleted")
+  private Long isDeleted;
   
 
 }

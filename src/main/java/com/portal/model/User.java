@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,6 +20,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name="user")
 public class User {
 
     @Id
@@ -33,6 +35,8 @@ public class User {
     private Long salary;
     @Column
     private Long age;
+    @Column(name="country_id")
+    private Long country;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLES", joinColumns = {

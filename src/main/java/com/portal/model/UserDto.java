@@ -10,6 +10,7 @@ public class UserDto {
     private Long age;
     private Long salary;
     private Long id;
+    private Long country;
 
    
 }
