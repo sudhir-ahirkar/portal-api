@@ -27,6 +27,7 @@ import com.portal.dto.in.RefDataDTO;
 import com.portal.dto.in.UserRefDataDTO;
 import com.portal.dto.in.UserSearchInDTO;
 import com.portal.dto.out.UserSearchOutDTO;
+import com.portal.exception.UserCreateFailedException;
 import com.portal.model.User;
 import com.portal.model.UserDto;
 import com.portal.ref.service.RefDataService;
@@ -46,11 +47,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	private RefDataService refDataService;
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDao.findByUsername(username);
-		if(user == null){
+		Optional<User> user = userDao.findByUsername(username);
+		if(!user.isPresent()){
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
+		return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), getAuthority(user.get()));
 	}
 
 	private Set<SimpleGrantedAuthority> getAuthority(User user) {
@@ -76,7 +77,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 	@Override
 	public User findOne(String username) {
-		return userDao.findByUsername(username);
+	  Optional<User> extUser=userDao.findByUsername(username);
+	 return extUser.orElse(null);
+	 
 	}
 
 	@Override
@@ -138,5 +141,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     List<RefDataDTO> countries= refDataService.getCountry().stream().map(RefDataDTO::toRefData).collect(Collectors.toList());
     userRefDataDTO.setCountries(countries);
     return userRefDataDTO;
+  }
+
+  @Override
+  public void validateUser(UserDto user) throws UserCreateFailedException {
+  Optional<User> extUse=  userDao.findByUsername(user.getUsername());
+   
+  if(extUse.isPresent()) {
+    throw new UserCreateFailedException();
+  }
   }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import com.portal.dto.in.UserRefDataDTO;
 import com.portal.dto.in.UserSearchInDTO;
 import com.portal.dto.out.UserSearchOutDTO;
+import com.portal.exception.UserCreateFailedException;
 import com.portal.model.User;
 import com.portal.model.UserDto;
 
@@ -26,4 +27,5 @@ public interface UserService {
 	UserDto update(Long userId,UserDto user);
 	
     UserRefDataDTO getRefData();
+    void validateUser(UserDto user) throws UserCreateFailedException;
 }

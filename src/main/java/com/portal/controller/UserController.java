@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.portal.dto.in.UserSearchInDTO;
 import com.portal.dto.out.UserSearchOutDTO;
+import com.portal.exception.UserCreateFailedException;
 import com.portal.model.User;
 import com.portal.model.UserDto;
 import com.portal.service.UserService;
@@ -38,6 +39,8 @@ public class UserController {
     @RequestMapping(value="/users", method = RequestMethod.POST)
     public ResponseEntity<Page<UserSearchOutDTO>> listUser(@RequestBody UserSearchInDTO userSearchInDTO, 
     	    Pageable pageable){
+      
+       
         Page<UserSearchOutDTO> userList=userService.findAll(userSearchInDTO,pageable);
          
          return new ResponseEntity<Page<UserSearchOutDTO>>(userList,HttpStatus.OK);
@@ -61,7 +64,8 @@ public class UserController {
     
 
     @RequestMapping(value="/signup", method = RequestMethod.POST)
-    public User saveUser(@RequestBody UserDto user){
+    public User saveUser(@RequestBody UserDto user) throws UserCreateFailedException{
+         userService.validateUser(user);
         return userService.save(user);
     }
     
